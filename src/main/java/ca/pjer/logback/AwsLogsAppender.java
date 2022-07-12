@@ -18,6 +18,7 @@ public class AwsLogsAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
     private Encoder<ILoggingEvent> encoder;
 
     private String logGroupName;
+    private StreamName streamName;
     private String logStreamName;
     private String logStreamUuidPrefix;
     private String logRegion;
@@ -81,6 +82,16 @@ public class AwsLogsAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
     @SuppressWarnings({"unused", "WeakerAccess"})
     public void setLogStreamName(String logStreamName) {
         this.logStreamName = logStreamName;
+    }
+
+    @SuppressWarnings({"unused", "WeakerAccess"})
+    public StreamName getStreamName() {
+        return streamName;
+    }
+
+    @SuppressWarnings({"unused", "WeakerAccess"})
+    public void setStreamName(StreamName streamName) {
+        this.streamName = streamName;
     }
 
     @SuppressWarnings({"unused", "WeakerAccess"})
@@ -205,13 +216,17 @@ public class AwsLogsAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
                 logGroupName = getClass().getSimpleName();
                 addStatus(new WarnStatus("No logGroupName, default to " + logGroupName, this));
             }
-            if (logStreamName == null) {
-                if (logStreamUuidPrefix != null) {
-                    logStreamName = String.format("%s%s", logStreamUuidPrefix, UUID.randomUUID().toString());
-                } else {
-                    logStreamName = new SimpleDateFormat("yyyyMMdd'T'HHmmss").format(new Date());
-                    addStatus(new WarnStatus("No logStreamName, default to " + logStreamName, this));
+            if (streamName == null) {
+                if (logStreamName == null) {
+                    if (logStreamUuidPrefix != null) {
+                        logStreamName = String.format("%s%s", logStreamUuidPrefix, UUID.randomUUID().toString());
+                    } else {
+                        logStreamName = new SimpleDateFormat("yyyyMMdd'T'HHmmss").format(new Date());
+                        addStatus(new WarnStatus("No logStreamName, default to " + logStreamName, this));
+                    }
                 }
+            } else {
+                logStreamName = streamName.get();
             }
             if (this.awsLogsStub == null) {
                 this.awsLogsStub = new AWSLogsStub(logGroupName, logStreamName, logRegion, retentionTimeDays
