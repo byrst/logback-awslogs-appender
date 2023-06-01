@@ -5,7 +5,7 @@
 
     <groupId>ca.pjer</groupId>
     <artifactId>logback-awslogs-appender</artifactId>
-    <version>1.6.0-BYRST</version>
+    <version>1.6.1-BYRST-SNAPSHOT</version>
 
     <name>Logback AWSLogs appender</name>
     <description>An Amazon Web Services (AWS) Logs (CloudWatch) appender for Logback</description>
@@ -31,7 +31,7 @@
         <connection>scm:git:git@github.com:byrst/logback-awslogs-appender.git</connection>
         <developerConnection>scm:git:git@github.com:byrst/logback-awslogs-appender.git</developerConnection>
         <url>https://github.com/byrst/logback-awslogs-appender.git</url>
-        <tag>logback-awslogs-appender-1.6.0-BYRST</tag>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <repository>
