@@ -30,21 +30,31 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:pierredavidbelanger/logback-awslogs-appender.git</connection>
-        <developerConnection>scm:git:git@github.com:pierredavidbelanger/logback-awslogs-appender.git</developerConnection>
-        <url>https://github.com/pierredavidbelanger/logback-awslogs-appender</url>
+        <connection>scm:git:git@github.com:byrst/logback-awslogs-appender.git</connection>
+        <developerConnection>scm:git:git@github.com:byrst/logback-awslogs-appender.git</developerConnection>
+        <url>https://github.com/byrst/logback-awslogs-appender.git</url>
+        <tag>HEAD</tag>
     </scm>
-
     <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
         <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/byrst/byrst-api-cli</url>
         </repository>
     </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/byrst/*</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
